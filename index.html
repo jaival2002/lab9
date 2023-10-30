@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock, Paper, Scissors Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #2C3E50;
+            color: #d3a173;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #34495E;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Rock, Paper, Scissors Game</h2>
+    <p>Ready to play against the computer?</p>
+    <button onclick="playGame()">Start Game</button>
+
+    <!-- Linking to the game's JavaScript code -->
+    <script>
+        function getComputerChoice() {
+            const choices = ['rock', 'paper', 'scissors'];
+            const randomNumber = Math.floor(Math.random() * 3);
+            return choices[randomNumber];
+        }
+        
+        // The function that determines the winner
+        function getWinner(userChoice, computerChoice) {
+            if (userChoice === computerChoice) {
+                return 'It\'s a tie!';
+            }
+        
+            if (
+                (userChoice === 'rock' && computerChoice === 'scissors') ||
+                (userChoice === 'scissors' && computerChoice === 'paper') ||
+                (userChoice === 'paper' && computerChoice === 'rock')
+            ) {
+                return 'User wins!';
+            } else {
+                return 'Computer wins!';
+            }
+        }
+        
+        // This represents the main functions which helps playing the game
+        function playGame() {
+            let userChoice = prompt('Enter your answer: Rock, Paper, or Scissors').toLowerCase();
+        
+           
+            while (!['rock', 'paper', 'scissors'].includes(userChoice)) {
+                alert('Invalid choice. Please enter Rock, Paper, or Scissors.');
+                userChoice = prompt('Enter your answer: Rock, Paper, or Scissors').toLowerCase();
+            }
+        
+            const computerChoice = getComputerChoice();
+        
+            console.log('User chose:', userChoice);
+            console.log('Computer chose:', computerChoice);
+        
+            const result = getWinner(userChoice, computerChoice);
+            console.log(result);
+        
+            // Request that the user play again.
+            const playAgain = confirm('Do you want to play again?');
+            if (playAgain) {
+                playGame();
+            }
+        }
+        
+        playGame();
+            </script>
+</body>
+</html>
